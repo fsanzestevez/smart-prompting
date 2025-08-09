@@ -15,12 +15,15 @@ flowchart TD
         end
         
         %% Phase 2: System Design
-        subgraph P2 ["Phase 2: System Design"]
+        subgraph P2 ["Phase 2: System Design with ML Checkpoints"]
             direction TB
             H1[Human: Requirements & Approach Validated<br/>Final technical specs & approach approved]
             SYS[System Design Agent<br/>Clean Architecture blueprints & API contracts]
+            H2_DATA[Human: Data Strategy Approval<br/>EDA approach, data requirements, cost/time estimates]
             MODEL[Model Engineer Agent<br/>ML architecture & training pipelines]
+            H2_MODEL[Human: ML Architecture Approval<br/>Model selection, training strategy, resource requirements]
             PLAN[Implementation Planner Agent<br/>Sprint strategy & resource allocation]
+            H2_PLAN[Human: ML Implementation Plan Approval<br/>Timeline, milestones, success criteria validation]
             H3[Human: Architecture Review<br/>Confirm system approach]
             H4[Human: Resource Approval<br/>Authorize implementation plan]
         end
@@ -60,11 +63,19 @@ flowchart TD
         BRAIN -.->|ML requirements<br/>Data context| DATA
         DATA -->|EDA insights<br/>Feature engineering<br/>Data quality assessment| MODEL
         
-        %% Phase 2 Internal Flow
+        %% Phase 2 Internal Flow with ML Checkpoints
         SYS -->|Clean Architecture blueprint<br/>API contracts<br/>Integration design| H3
-        MODEL -->|ML pipeline architecture<br/>Model selection<br/>Training strategy| H3
+        DATA -->|Data strategy proposal<br/>EDA approach<br/>Cost/time estimates| H2_DATA
+        H2_DATA -->|Approved data strategy<br/>Resource allocation| MODEL
+        MODEL -->|ML pipeline architecture<br/>Model selection<br/>Training strategy| H2_MODEL
+        H2_MODEL -->|Approved ML architecture<br/>Resource requirements| H3
         H3 -->|Validated architecture<br/>Technical decisions| PLAN
-        PLAN -->|Development tasks<br/>Resource allocation<br/>Sprint timeline| H4
+        PLAN -->|ML implementation plan<br/>Sprint timeline<br/>Success criteria| H2_PLAN
+        H2_PLAN -->|Approved implementation plan<br/>Resource allocation| H4
+        
+        %% ML Planning Coordination
+        PLAN <-->|Training resource allocation<br/>Model selection timeline<br/>Success metrics planning| MODEL
+        PLAN <-->|Data preparation sprints<br/>Feature engineering timeline<br/>EDA milestone scheduling| DATA
         
         %% Phase 3 TDD Flow
         TDD -->|TDD workflow setup<br/>Red-Green-Refactor coordination| CODE
@@ -110,7 +121,7 @@ flowchart TD
     class BRAIN,REQ,SYS,PLAN,CODE,OPT,VIZ agent
     class TDD,QA tddAgent
     class DATA,MODEL dsAgent
-    class H0,H1,H3,H4,H5,H6,H7 human
+    class H0,H1,H3,H4,H5,H6,H7,H2_DATA,H2_MODEL,H2_PLAN human
     class H0_REQ,H0_BRAIN iterative
     class EXT external
     class MON agent

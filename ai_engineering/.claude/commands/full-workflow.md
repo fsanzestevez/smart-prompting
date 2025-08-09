@@ -8,11 +8,19 @@ Orchestrates the complete Multi-Agent AI Development System workflow through all
 - **Data Assessment**: @data-scientist performs EDA and feature engineering
 - **Human Checkpoints**: H0 (Project Intake) → H0_REQ (Requirements Review) → H0_BRAIN (Solution Validation) → H1 (Final Approval)
 
-## Phase 2: System Design  
+## Phase 2: System Design with ML Resource Validation
 - **Architecture Design**: @system-designer creates Clean Architecture blueprints
+- **Data Strategy**: @data-scientist proposes EDA approach with cost/time estimates
+- **H2_DATA (Data Strategy Approval)**: Validate data approach before expensive EDA execution
 - **ML Architecture**: @model-engineer designs training pipelines and model architecture
-- **Implementation Planning**: @implementation-planner creates sprint strategy and resource allocation
-- **Human Checkpoints**: H3 (Architecture Review) → H4 (Resource Approval)
+- **H2_MODEL (ML Architecture Approval)**: Confirm model selection and resource requirements
+- **ML Planning Coordination**: @implementation-planner coordinates with data science agents for:
+  - Training resource allocation and GPU scheduling  
+  - Model selection timeline and fallback strategies
+  - Data preparation sprints and feature engineering milestones
+  - Success metrics definition and evaluation checkpoints
+- **H2_PLAN (ML Implementation Plan Approval)**: Validate timeline and resource allocation
+- **Human Checkpoints**: H2_DATA → H2_MODEL → H2_PLAN → H3 (Architecture Review) → H4 (Resource Approval)
 
 ## Phase 3: Execution
 - **Code Generation**: @code-architect generates Clean Architecture scaffolds

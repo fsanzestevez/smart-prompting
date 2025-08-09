@@ -129,14 +129,21 @@ flowchart TD
     BRAIN --> H0_BRAIN[Human: Solution Validation]
     H0_BRAIN --> H1[Human: Final Approval]
     
-    %% Phase 2: System Design
+    %% Phase 2: System Design with ML Checkpoints
     H1 --> SYS[System Designer]
     H1 --> DATA[Data Scientist]
     SYS --> H3[Human: Architecture Review]
-    DATA --> MODEL[Model Engineer]
-    MODEL --> H3
+    DATA --> H2_DATA[Human: Data Strategy Approval]
+    H2_DATA --> MODEL[Model Engineer]
+    MODEL --> H2_MODEL[Human: ML Architecture Approval]
+    H2_MODEL --> H3
     H3 --> PLAN[Implementation Planner]
-    PLAN --> H4[Human: Resource Approval]
+    PLAN --> H2_PLAN[Human: ML Implementation Plan Approval]
+    H2_PLAN --> H4[Human: Resource Approval]
+    
+    %% ML Planning Coordination
+    PLAN <--> MODEL
+    PLAN <--> DATA
     
     %% Phase 3: TDD Execution
     H4 --> TDD[TDD Coordinator]
@@ -165,7 +172,7 @@ flowchart TD
     classDef tdd fill:#32cd32,stroke:#fff,stroke-width:2px,color:#fff
     classDef external fill:#9370db,stroke:#fff,stroke-width:2px,color:#fff
     
-    class H0,H1,H3,H4,H5,H6,H7,H0_REQ,H0_BRAIN human
+    class H0,H1,H3,H4,H5,H6,H7,H0_REQ,H0_BRAIN,H2_DATA,H2_MODEL,H2_PLAN human
     class REQ,BRAIN,SYS,PLAN,CODE,VIZ,DATA,MODEL,OPT agent
     class TDD,QA tdd
     class EXT external

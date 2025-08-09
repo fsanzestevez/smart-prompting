@@ -13,11 +13,13 @@ This command executes a specialized TDD-first development workflow designed for 
 
 ## Agent Coordination
 
-### Phase 1: TDD Architecture Planning
+### Phase 1: TDD Architecture Planning (with ML Resource Validation)
 - **@tdd-coordinator**: Establishes TDD workflow protocols and test execution strategy
 - **@qa-agent**: Designs comprehensive testing architecture with Given-When-Then structure
 - **@code-architect**: Plans Clean Architecture scaffold with TDD-compatible interfaces
-- **Human Checkpoint**: Review TDD approach and approve testing strategy
+- **@data-scientist** (if ML features): Proposes ML data strategy with cost/time estimates
+- **@model-engineer** (if ML features): Designs ML integration approach for FastAPI
+- **Human Checkpoint**: Review TDD approach, ML resource requirements, and approve testing strategy
 
 ### Phase 2: Red Phase Execution (Failing Tests)
 - **@tdd-coordinator**: Orchestrates failing test generation and validates proper failure reasons

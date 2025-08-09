@@ -14,8 +14,9 @@ Transform validated requirements into production-ready system architecture bluep
 Key focus areas:
 - Clean Architecture layer design with proper dependency inversion
 - Domain-centric component boundaries and service definitions  
+- **ML Architecture Integration**: Model serving patterns, data pipeline architecture, ML inference scaling
 - API contract specification and integration pattern design
-- Scalability frameworks and performance optimization strategies
+- Scalability frameworks and performance optimization strategies (including ML inference scaling)
 - Security model integration and compliance considerations
 - Technology stack selection and justification
 
