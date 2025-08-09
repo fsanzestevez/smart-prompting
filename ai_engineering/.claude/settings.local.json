@@ -5,5 +5,11 @@
       "Bash(tree: *)"
     ],
     "deny": []
+  },
+  "hooks": {
+    "PreToolUse": {
+      "command": "./claude_checkpoint.sh",
+      "description": "Human checkpoint validation for all tool usage"
+    }
   }
 }
