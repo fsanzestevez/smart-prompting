@@ -1,6 +1,6 @@
 # AI Agent Prompt Templates & Workflow System
 
-A collection of specialized system prompt templates and workflow documentation for creating AI-powered software development and data science orchestration systems, designed for CRM/CMS automation and machine learning projects.
+A collection of specialized system prompt templates and workflow documentation for creating AI-powered software development and data science orchestration systems, designed for LLM-based AI development and machine learning projects.
 
 ## Table of Contents
 
