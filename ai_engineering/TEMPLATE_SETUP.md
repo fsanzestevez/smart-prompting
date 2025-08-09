@@ -31,13 +31,21 @@ claude "/project:tdd-microservice Create a user management service with authenti
 ## What You Get:
 - **11 Specialized Subagents** with native Claude Code integration (includes TDD coordinator)
 - **Automatic task delegation** based on context analysis
+- **Human checkpoint validation** for resource-intensive operations (automatic via hooks)
 - **4-Phase workflow orchestration** via `/project:full-workflow` command
 - **TDD-focused FastAPI development** via `/project:tdd-microservice` command
 - **Individual agent access** via `@agent-name:` syntax
+- **Cost protection** for ML operations, destructive commands, and external requests
 
 ## Reference Materials (Stay Here):
 - `reference_materials/` - Keep in this template directory for consultation
 - Contains original agent specifications, workflow diagrams, and methodology
 - Use when customizing agents or understanding the system architecture
 
-That's it! Claude Code will automatically delegate to the right agents. See `USAGE_EXAMPLES.md` for complete usage guide.
+## Checkpoint System:
+- **Automatic validation** for expensive operations (ML training, data processing, destructive commands)
+- **Human approval required** for resource-intensive tasks regardless of how Claude is invoked
+- **Customizable** via `.claude/claude_checkpoint.sh` script
+- See `.claude/CHECKPOINT_SYSTEM.md` for detailed documentation
+
+That's it! Claude Code will automatically delegate to the right agents with built-in cost protection. See `USAGE_EXAMPLES.md` for complete usage guide.

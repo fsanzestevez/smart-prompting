@@ -20,10 +20,12 @@ A collection of specialized system prompt templates and workflow documentation f
 This repository contains carefully crafted system prompt templates for **10 specialized AI agents** that work together in a structured **4-phase workflow** to automate the complete software development lifecycle, including machine learning and data science capabilities. The system includes **7 core development agents** and **3 data science agents** that seamlessly integrate to handle both traditional software engineering and ML/AI projects.
 
 **Target Use Cases**: 
-- CRM/CMS automation projects requiring Clean Architecture principles
-- Machine learning model development and deployment
+- Enterprise software projects requiring Clean Architecture principles
+- Machine learning model development and deployment with cost control
 - Data analytics and visualization dashboards
-- End-to-end AI/ML pipeline automation with human oversight
+- End-to-end AI/ML pipeline automation with human oversight and resource validation
+- Scalable software platform development
+- AI-driven enterprise application development
 
 ## Contents
 
@@ -44,9 +46,12 @@ This repository contains carefully crafted system prompt templates for **10 spec
 │   ├── data-scientist.md            # EDA and feature engineering
 │   ├── model-engineer.md            # ML model architecture and training
 │   └── insights-visualizer.md       # Dashboard and visualization
-└── commands/
-    ├── full-workflow.md              # Complete 4-phase workflow orchestration
-    └── tdd-microservice.md           # TDD-focused FastAPI microservice development
+├── commands/
+│   ├── full-workflow.md              # Complete 4-phase workflow orchestration
+│   └── tdd-microservice.md           # TDD-focused FastAPI microservice development
+├── claude_checkpoint.sh             # Human checkpoint validation system
+├── settings.local.json              # Hook configuration for automatic approval gates
+└── CHECKPOINT_SYSTEM.md             # Documentation for checkpoint system
 ```
 
 #### Reference Materials
@@ -352,6 +357,30 @@ All templates embed Clean Architecture principles with TDD-first approach:
 - **Hexagonal architecture** with ports and adapters
 - **Given-When-Then testing** structure for FastAPI microservices
 - **Mock-first strategy** for external dependency isolation
+
+## Human Checkpoint System
+
+The system includes **automatic human oversight** for resource-intensive operations:
+
+### **Automatic Resource Validation**
+- **ML Operations**: Training jobs, data processing, model deployment
+- **Destructive Commands**: File deletion, data modification, system changes
+- **External Requests**: API calls, web searches, external service usage
+- **Critical Files**: Configuration changes, dependency updates
+
+### **Universal Coverage**
+- Works with **automatic delegation**: "Train ML model on customer data" → Human approval required
+- Works with **explicit calls**: `@data-scientist: Process large dataset` → Human approval required  
+- Works with **workflow commands**: `/project:full-workflow` → Approval for expensive steps
+- Works with **all usage patterns** regardless of how Claude Code routes tasks
+
+### **Cost Protection Benefits**
+- **Prevents accidental expensive operations** (GPU training, large data processing)
+- **Validates resource requirements** before ML model training
+- **Protects against destructive commands** (rm -rf, database drops)
+- **Controls external API costs** (web searches, external service calls)
+
+The checkpoint system ensures **responsible AI usage** while maintaining development productivity.
 
 ## Customization
 

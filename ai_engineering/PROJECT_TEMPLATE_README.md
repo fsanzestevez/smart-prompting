@@ -41,11 +41,12 @@ reference_materials/
 ## 🚀 **What You Get After Copying:**
 
 ### Native Claude Code Integration
-- **10 Specialized Subagents** with automatic task delegation
+- **11 Specialized Subagents** with automatic task delegation (includes TDD coordinator)
 - **YAML Frontmatter Format** following Claude Code standards
 - **Independent Context Windows** for each agent
 - **Native @agent Syntax** for direct agent invocation
 - **Slash Commands** for workflow orchestration
+- **Automatic Human Checkpoints** via Claude Code hooks for resource validation
 
 ### Available Agents
 - **@brainstormer** - Creative solution exploration and technical ideation
@@ -119,9 +120,11 @@ nano .claude/commands/custom-workflow.md
 ✅ **Automatic Delegation** - No manual routing required  
 ✅ **Clean Architecture** - Embedded best practices throughout  
 ✅ **TDD-First Development** - Red-Green-Refactor cycles with FastAPI testing
+✅ **Human Checkpoint System** - Automatic approval required for expensive operations
 ✅ **4-Phase Workflow** - Complete development lifecycle coverage  
-✅ **ML/AI Integration** - Built-in data science and ML capabilities  
-✅ **Human Oversight** - Strategic checkpoints for quality assurance  
+✅ **ML/AI Integration** - Built-in data science and ML capabilities with cost control
+✅ **Resource Protection** - Prevents accidental expensive ML training or destructive operations
+✅ **Universal Coverage** - Checkpoints work regardless of how Claude is invoked
 ✅ **Highly Customizable** - Easy to modify agents and workflows  
 
 ## 📋 **Template Directory Structure:**
@@ -130,7 +133,10 @@ nano .claude/commands/custom-workflow.md
 ai_engineering/ (This template)
 ├── .claude/                     # ← Copy this to your new project
 │   ├── agents/                  #   11 specialized subagents (includes TDD coordinator)
-│   └── commands/                #   Workflow orchestration commands (full-workflow, tdd-microservice)
+│   ├── commands/                #   Workflow orchestration commands (full-workflow, tdd-microservice)
+│   ├── claude_checkpoint.sh     #   Human checkpoint validation script
+│   ├── settings.local.json      #   Hook configuration for automatic checkpoints
+│   └── CHECKPOINT_SYSTEM.md     #   Documentation for checkpoint system
 ├── README.md                    # System documentation (optional copy)
 ├── USAGE_EXAMPLES.md            # Complete usage guide (optional copy)
 ├── TEMPLATE_SETUP.md            # Quick setup instructions (optional copy)

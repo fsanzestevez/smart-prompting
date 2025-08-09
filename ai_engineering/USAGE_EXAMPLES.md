@@ -19,29 +19,32 @@ See `TEMPLATE_SETUP.md` for details.
 
 ## ✅ Setup Complete!
 
-Your Multi-Agent AI Development System uses **native Claude Code subagents** with automatic delegation. Claude Code will intelligently route tasks to the most appropriate specialized agent based on your request.
+Your Multi-Agent AI Development System uses **native Claude Code subagents** with automatic delegation and **human checkpoint validation**. Claude Code will intelligently route tasks to the most appropriate specialized agent based on your request, while automatically requesting human approval for resource-intensive operations.
 
 ## 🚀 How It Works
 
-### 1. **Native Subagent Delegation** 
+### 1. **Native Subagent Delegation with Checkpoint Protection** 
 Claude Code automatically delegates tasks to specialized agents based on:
 - Task description analysis and context understanding  
 - Agent capability matching and expertise alignment
 - Automatic routing without manual intervention required
+- **Human checkpoint validation** for resource-intensive operations (ML training, data processing, destructive commands)
 
 ### 2. **Two Primary Usage Modes**
 
-#### A. **Automatic Delegation** (Recommended)
+#### A. **Automatic Delegation with Checkpoints** (Recommended)
 ```bash
-# Claude Code automatically selects the best agent
+# Claude Code automatically selects the best agent and validates resource usage
 claude "I need to build a customer sentiment analysis API"
 # → Auto-delegates through multiple agents for complete development
+# → Requests approval for ML model training or data processing steps
 
 claude "Generate test cases for this user authentication endpoint"  
-# → Auto-delegates to @qa-agent
+# → Auto-delegates to @qa-agent (proceeds automatically for safe operations)
 
 claude "What's the best architecture for processing 1M requests/day?"
 # → Auto-delegates to @brainstormer and @system-designer
+# → May request approval for external research or resource-intensive analysis
 ```
 
 #### B. **Explicit Agent Invocation**
@@ -62,6 +65,40 @@ claude "/project:full-workflow Create a real-time recommendation engine with ML 
 claude "/project:tdd-microservice Create a user management service with authentication and CRUD"
 # → TDD-first development with Given-When-Then testing and Clean Architecture
 ```
+
+## 🛡️ Human Checkpoint System
+
+The system automatically validates operations and requests human approval for:
+
+### **Resource-Intensive Operations (Require Approval):**
+```bash
+# ML/Data Science operations
+claude "Train a neural network on customer data"
+# → 🔬 ML/Data Science Operation Detected: Review resource requirements
+
+claude "Process this large dataset for insights" 
+# → 🔬 Data processing detected: Confirm compute resource usage
+
+# Destructive operations  
+claude "Clean up old model files with rm -rf models/"
+# → ⚠️ Destructive Operation Detected: Review deletion command
+
+# External requests
+claude "Search for latest ML research papers"
+# → 🌐 External Web Request: May incur costs or share data
+```
+
+### **Safe Operations (Proceed Automatically):**
+```bash
+# Regular development tasks
+claude "Create a utility function for data validation"
+claude "Generate test cases for the API endpoint" 
+claude "Write documentation for the authentication flow"
+# → These proceed without confirmation
+```
+
+### **Checkpoint Override:**
+If you need to bypass checkpoints for trusted operations, you can modify `.claude/claude_checkpoint.sh` to customize the validation logic.
 
 ## 📋 Quick Test Examples
 
