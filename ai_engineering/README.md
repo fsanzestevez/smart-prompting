@@ -49,9 +49,11 @@ This repository contains carefully crafted system prompt templates for **10 spec
 ├── commands/
 │   ├── full-workflow.md              # Complete 4-phase workflow orchestration
 │   └── tdd-microservice.md           # TDD-focused FastAPI microservice development
-├── claude_checkpoint.sh             # Human checkpoint validation system
+├── claude_checkpoint.sh             # PreToolUse hook for operation validation
+├── agent_validation_hook.sh         # PostTask hook for output validation
 ├── settings.local.json              # Hook configuration for automatic approval gates
-└── CHECKPOINT_SYSTEM.md             # Documentation for checkpoint system
+├── CHECKPOINT_SYSTEM.md             # Documentation for operation checkpoint system
+└── AGENT_VALIDATION_SYSTEM.md       # Documentation for agent output validation
 ```
 
 #### Reference Materials
@@ -358,29 +360,48 @@ All templates embed Clean Architecture principles with TDD-first approach:
 - **Given-When-Then testing** structure for FastAPI microservices
 - **Mock-first strategy** for external dependency isolation
 
-## Human Checkpoint System
+## Human Oversight Systems
 
-The system includes **automatic human oversight** for resource-intensive operations:
+The framework includes **two complementary human oversight systems** for comprehensive workflow control:
 
-### **Automatic Resource Validation**
+### **1. Operation Checkpoint System** (PreToolUse Hook)
+**Purpose**: Prevents expensive or dangerous operations before execution
+
+#### **Automatic Resource Validation**
 - **ML Operations**: Training jobs, data processing, model deployment
 - **Destructive Commands**: File deletion, data modification, system changes
 - **External Requests**: API calls, web searches, external service usage
 - **Critical Files**: Configuration changes, dependency updates
 
-### **Universal Coverage**
-- Works with **automatic delegation**: "Train ML model on customer data" → Human approval required
-- Works with **explicit calls**: `@data-scientist: Process large dataset` → Human approval required  
-- Works with **workflow commands**: `/project:full-workflow` → Approval for expensive steps
-- Works with **all usage patterns** regardless of how Claude Code routes tasks
-
-### **Cost Protection Benefits**
+#### **Cost Protection Benefits**
 - **Prevents accidental expensive operations** (GPU training, large data processing)
 - **Validates resource requirements** before ML model training
 - **Protects against destructive commands** (rm -rf, database drops)
 - **Controls external API costs** (web searches, external service calls)
 
-The checkpoint system ensures **responsible AI usage** while maintaining development productivity.
+### **2. Agent Output Validation System** (PostTask Hook)
+**Purpose**: Reviews and validates agent deliverables before workflow progression
+
+#### **Quality Validation Checkpoints**
+- **Output Quality**: Does the deliverable meet requirements?
+- **Technical Accuracy**: Are recommendations and implementations sound?
+- **Completeness**: Are all requested aspects addressed?
+- **Risk Assessment**: Are risks properly identified and documented?
+
+#### **Interactive Validation Options**
+- **Approve**: Accept output and continue to next agent/phase
+- **Revise**: Request agent revision with specific feedback
+- **Stop**: Halt workflow for manual intervention
+- **Details**: View comprehensive agent output for detailed review
+
+### **Unified Workflow Protection**
+Both systems work together to ensure:
+- **Pre-execution Safety**: Operation checkpoints prevent costly mistakes
+- **Post-execution Quality**: Output validation ensures deliverable standards
+- **Full Coverage**: Works with automatic delegation, explicit calls, and workflow commands
+- **Phase Alignment**: Validation points map to workflow diagram checkpoints (H0-H7)
+
+The dual checkpoint system ensures **responsible AI usage** and **quality deliverables** while maintaining development productivity.
 
 ## Customization
 

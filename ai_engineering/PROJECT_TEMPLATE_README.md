@@ -61,6 +61,12 @@ reference_materials/
 - **@model-engineer** - ML architecture and training pipelines
 - **@insights-visualizer** - Dashboard and monitoring systems
 
+### Human Validation Systems
+- **Operation Checkpoints (PreToolUse)** - Prevents expensive/dangerous operations before execution
+- **Output Validation (PostTask)** - Reviews agent deliverables for quality before progression
+- **Interactive Approval Workflow** - Approve/Revise/Stop/Details options for comprehensive control
+- **Phase-Aligned Checkpoints** - Maps to workflow diagram validation points (H0-H7)
+
 ### Workflow Commands
 - **`/project:full-workflow [description]`** - Complete 4-phase development workflow
 - **`/project:tdd-microservice [description]`** - TDD-focused FastAPI microservice development
@@ -120,11 +126,12 @@ nano .claude/commands/custom-workflow.md
 ✅ **Automatic Delegation** - No manual routing required  
 ✅ **Clean Architecture** - Embedded best practices throughout  
 ✅ **TDD-First Development** - Red-Green-Refactor cycles with FastAPI testing
-✅ **Human Checkpoint System** - Automatic approval required for expensive operations
+✅ **Dual Validation System** - Operation checkpoints AND output quality validation
 ✅ **4-Phase Workflow** - Complete development lifecycle coverage  
 ✅ **ML/AI Integration** - Built-in data science and ML capabilities with cost control
 ✅ **Resource Protection** - Prevents accidental expensive ML training or destructive operations
-✅ **Universal Coverage** - Checkpoints work regardless of how Claude is invoked
+✅ **Quality Assurance** - Interactive approval/revision workflow for all agent outputs
+✅ **Universal Coverage** - Validation works regardless of how Claude is invoked
 ✅ **Highly Customizable** - Easy to modify agents and workflows  
 
 ## 📋 **Template Directory Structure:**
@@ -134,9 +141,11 @@ ai_engineering/ (This template)
 ├── .claude/                     # ← Copy this to your new project
 │   ├── agents/                  #   11 specialized subagents (includes TDD coordinator)
 │   ├── commands/                #   Workflow orchestration commands (full-workflow, tdd-microservice)
-│   ├── claude_checkpoint.sh     #   Human checkpoint validation script
-│   ├── settings.local.json      #   Hook configuration for automatic checkpoints
-│   └── CHECKPOINT_SYSTEM.md     #   Documentation for checkpoint system
+│   ├── claude_checkpoint.sh     #   PreToolUse hook for operation validation
+│   ├── agent_validation_hook.sh #   PostTask hook for output validation
+│   ├── settings.local.json      #   Hook configuration for dual validation systems
+│   ├── CHECKPOINT_SYSTEM.md     #   Documentation for operation checkpoint system
+│   └── AGENT_VALIDATION_SYSTEM.md #  Documentation for agent output validation
 ├── README.md                    # System documentation (optional copy)
 ├── USAGE_EXAMPLES.md            # Complete usage guide (optional copy)
 ├── TEMPLATE_SETUP.md            # Quick setup instructions (optional copy)
