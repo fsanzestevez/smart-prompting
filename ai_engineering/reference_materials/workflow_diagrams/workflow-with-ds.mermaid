@@ -1,0 +1,132 @@
+%%{init: {"theme": "forest"}}%%
+flowchart TD
+    subgraph MAIN["AI Agent Workflow System with Data Science Integration"]
+        style MAIN fill:#f5f5dc,stroke:#333,stroke-width:3px
+
+        %% Phase 1: Initial Scoping
+        subgraph P1 ["Phase 1: Initial Scoping"]
+            direction TB
+            H0[Human: Project Intake<br/>Initial requirement assessment]
+            H0_REQ[Human: Requirements Review<br/>Validate initial technical specs]
+            H0_BRAIN[Human: Solution Validation<br/>Approve brainstormed approaches]
+            REQ[Requirements Architect Agent<br/>Translates business needs to technical specs]
+            BRAIN[Brainstorming Agent<br/>Explores solution approaches & possibilities]
+            
+            %% Data Science Integration Point
+            DS1[Data Scientist Agent<br/>EDA & Feature Engineering]
+        end
+        
+        %% Phase 2: System Design
+        subgraph P2 ["Phase 2: System Design"]
+            direction TB
+            H1[Human: Requirements & Approach Validated<br/>Final technical specs & approach approved]
+            SYS[System Design Agent<br/>Creates architecture & integration patterns]
+            PLAN[Implementation Planner Agent<br/>Decomposes design into development strategy]
+            H3[Human: Architecture Review<br/>Confirm system approach]
+            H4[Human: Resource Approval<br/>Authorize implementation plan]
+            
+            %% Model Development Planning
+            DS2[Model Engineer Agent<br/>ML Architecture & Training]
+        end
+        
+        %% Phase 3: Execution
+        subgraph P3 ["Phase 3: Execution"]
+            direction TB
+            CODE[Code Architect Agent<br/>Generates service skeletons & implementations]
+            QA[Quality Assurance Agent<br/>Designs testing strategy & validation]
+            H5[Human: Code Review<br/>Quality gate approval]
+            H6[Human: Handoff Decision<br/>Ready for DevOps team]
+            
+            %% Visualization Development
+            DS3[Insights Visualizer Agent<br/>Dashboards & Monitoring]
+        end
+        
+        %% Phase 4: Hand-off & Monitoring
+        subgraph P4 ["Phase 4: Hand-off & Monitoring"]
+            direction TB
+            OPT[Optimization Analyst Agent<br/>Analyzes performance & improvements]
+            H7[Human: Strategic Alignment<br/>Continuous oversight]
+        end
+        
+        %% External Handoff (Outside phases)
+        EXT[External DevOps/Infra Team<br/>Deployment & production management]
+        
+        %% Phase 1 Internal Flow (with DS integration)
+        H0 -->|Project requirements<br/>Business context<br/>Initial constraints| REQ
+        REQ -->|Initial requirements draft<br/>Technical interpretation<br/>Clarification needs| H0_REQ
+        H0_REQ -->|Refine requirements| REQ
+        H0_REQ -->|Requirements ready<br/>Begin solution exploration| BRAIN
+        
+        %% Data Science Flow in Phase 1
+        REQ -->|Data requirements<br/>Success metrics| DS1
+        DS1 -->|Data insights<br/>Feature opportunities<br/>Quality assessment| BRAIN
+        
+        BRAIN -->|Solution approaches<br/>Technology options<br/>Feasibility analysis| H0_BRAIN
+        H0_BRAIN -->|Need requirement changes| REQ
+        H0_BRAIN -->|Refine solutions| BRAIN
+        
+        %% Phase 2 Internal Flow (with ML integration)
+        SYS -->|System architecture<br/>API contracts<br/>Integration design| H3
+        
+        %% Model Engineering Flow
+        DS1 -->|Feature pipeline<br/>Preprocessed data| DS2
+        SYS -->|Architecture constraints<br/>Performance requirements| DS2
+        DS2 -->|Model artifacts<br/>Performance metrics| PLAN
+        
+        H3 -->|Validated architecture<br/>Technical decisions| PLAN
+        PLAN -->|Development tasks<br/>Resource allocation<br/>Timeline strategy| H4
+        
+        %% Phase 3 Internal Flow (with Visualization)
+        CODE -->|Service implementations<br/>Database schemas<br/>Business logic| QA
+        
+        %% Model Integration & Visualization
+        DS2 -->|Trained models<br/>API specifications| CODE
+        DS2 -->|Performance metrics<br/>Model outputs| DS3
+        DS3 -->|Dashboard specs<br/>Frontend components| CODE
+        
+        QA -->|Test results<br/>Quality metrics<br/>Validation report| H5
+        H5 -->|Quality approved code<br/>Documentation<br/>Deployment specs| H6
+        
+        %% Phase 4 Internal Flow (with DS monitoring)
+        OPT -->|Performance analysis<br/>Improvement recommendations<br/>Knowledge updates| H7
+        DS3 -->|Production dashboards<br/>Model monitoring| OPT
+        
+        %% Cross-Phase Connections
+        H0_BRAIN -->|Solutions validated<br/>Ready for selection| H1
+        H1 -->|Selected approach<br/>Technical direction<br/>Scope System Design| SYS
+        H4 -->|Approved plan<br/>Team assignments| CODE
+        H6 -->|Production-ready code<br/>Deployment requirements<br/>Technical documentation| EXT
+        EXT -->|Production system<br/>Performance data<br/>User feedback| OPT
+        
+        %% Feedback Loops
+        H7 -->|Strategic adjustments<br/>process improvements| H0
+        OPT -->|Technical insights<br/>Architecture learnings| SYS
+        OPT -->|Process optimizations<br/>Resource insights| PLAN
+        OPT -->|Model performance<br/>Drift detection| DS2
+        
+        %% Parallel Processing Connections
+        BRAIN -.->|Solution context| SYS
+        SYS -.->|Architecture context| CODE
+        PLAN -.->|Implementation context| QA
+        DS1 -.->|Data context| DS2
+        DS2 -.->|Model context| DS3
+        DS3 -.->|Visualization context| OPT
+    end
+    
+    %% Styling
+    classDef agent fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef human fill:#fff3e0,stroke:#ef6c00,stroke-width:3px
+    classDef iterative fill:#e8f5e8,stroke:#2e7d32,stroke-width:3px
+    classDef external fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef dsagent fill:#ffe0b2,stroke:#e65100,stroke-width:3px
+    classDef feedback stroke-dasharray: 5 5
+    
+    class BRAIN,REQ,SYS,PLAN,CODE,QA,OPT agent
+    class H0,H1,H3,H4,H5,H6,H7 human
+    class H0_REQ,H0_BRAIN iterative
+    class EXT external
+    class DS1,DS2,DS3 dsagent
+    
+    %% Phase Styling
+    classDef phaseBox fill:#f9f9f9,stroke:#333,stroke-width:2px
+    class P1,P2,P3,P4 phaseBox
