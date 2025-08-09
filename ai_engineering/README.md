@@ -120,7 +120,56 @@ The templates implement a **4-phase structured workflow** with **8 human checkpo
 
 The framework processes projects through a sophisticated 4-phase pipeline with iterative requirements refinement and strategic human oversight:
 
-![Workflow Diagram](workflow.svg)
+```mermaid
+flowchart TD
+    %% Phase 1: Initial Scoping
+    H0[Human: Project Intake] --> REQ[Requirements Architect]
+    REQ --> H0_REQ[Human: Requirements Review]
+    H0_REQ --> BRAIN[Brainstorming Agent]
+    BRAIN --> H0_BRAIN[Human: Solution Validation]
+    H0_BRAIN --> H1[Human: Final Approval]
+    
+    %% Phase 2: System Design
+    H1 --> SYS[System Designer]
+    H1 --> DATA[Data Scientist]
+    SYS --> H3[Human: Architecture Review]
+    DATA --> MODEL[Model Engineer]
+    MODEL --> H3
+    H3 --> PLAN[Implementation Planner]
+    PLAN --> H4[Human: Resource Approval]
+    
+    %% Phase 3: TDD Execution
+    H4 --> TDD[TDD Coordinator]
+    TDD --> CODE[Code Architect]
+    TDD --> QA[QA Agent]
+    CODE --> VIZ[Insights Visualizer]
+    QA --> H5[Human: Code Review]
+    VIZ --> H5
+    H5 --> H6[Human: Handoff Decision]
+    
+    %% Phase 4: Monitoring
+    H6 --> EXT[External DevOps Team]
+    EXT --> OPT[Optimization Agent]
+    OPT --> H7[Human: Strategic Alignment]
+    
+    %% Feedback Loops
+    H7 --> H0
+    OPT --> SYS
+    
+    %% Context Sharing
+    MODEL -.-> CODE
+    
+    %% Styling
+    classDef human fill:#ffd700,stroke:#000,stroke-width:2px,color:#000
+    classDef agent fill:#4682b4,stroke:#fff,stroke-width:2px,color:#fff
+    classDef tdd fill:#32cd32,stroke:#fff,stroke-width:2px,color:#fff
+    classDef external fill:#9370db,stroke:#fff,stroke-width:2px,color:#fff
+    
+    class H0,H1,H3,H4,H5,H6,H7,H0_REQ,H0_BRAIN human
+    class REQ,BRAIN,SYS,PLAN,CODE,VIZ,DATA,MODEL,OPT agent
+    class TDD,QA tdd
+    class EXT external
+```
 
 ## Phase-Based Development Process
 

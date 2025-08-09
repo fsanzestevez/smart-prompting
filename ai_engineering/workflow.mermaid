@@ -1,0 +1,120 @@
+%%{init: {"theme": "forest"}}%%
+flowchart TD
+    subgraph MAIN["AI Agent Workflow System with TDD"]
+        style MAIN fill:#f5f5dc,stroke:#333,stroke-width:3px
+
+        %% Phase 1: Initial Scoping
+        subgraph P1 ["Phase 1: Initial Scoping"]
+            direction TB
+            H0[Human: Project Intake<br/>Initial requirement assessment]
+            H0_REQ[Human: Requirements Review<br/>Validate initial technical specs]
+            H0_BRAIN[Human: Solution Validation<br/>Approve brainstormed approaches]
+            REQ[Requirements Architect Agent<br/>Translates business needs to technical specs]
+            BRAIN[Brainstorming Agent<br/>Explores solution approaches & possibilities]
+            DATA[Data Scientist Agent<br/>EDA & feature engineering for ML projects]
+        end
+        
+        %% Phase 2: System Design
+        subgraph P2 ["Phase 2: System Design"]
+            direction TB
+            H1[Human: Requirements & Approach Validated<br/>Final technical specs & approach approved]
+            SYS[System Design Agent<br/>Clean Architecture blueprints & API contracts]
+            MODEL[Model Engineer Agent<br/>ML architecture & training pipelines]
+            PLAN[Implementation Planner Agent<br/>Sprint strategy & resource allocation]
+            H3[Human: Architecture Review<br/>Confirm system approach]
+            H4[Human: Resource Approval<br/>Authorize implementation plan]
+        end
+        
+        %% Phase 3: Execution (TDD-Enhanced)
+        subgraph P3 ["Phase 3: TDD-First Execution"]
+            direction TB
+            TDD[TDD Coordinator Agent<br/>Orchestrates Red-Green-Refactor cycles]
+            CODE[Code Architect Agent<br/>TDD-first Clean Architecture scaffolds]
+            QA[QA Agent<br/>FastAPI testing with Given-When-Then]
+            VIZ[Insights Visualizer Agent<br/>Dashboards & monitoring interfaces]
+            H5[Human: Code Review<br/>TDD compliance & quality gate approval]
+            H6[Human: Handoff Decision<br/>Ready for DevOps team]
+        end
+        
+        %% Phase 4: Hand-off & Monitoring
+        subgraph P4 ["Phase 4: Hand-off & Monitoring"]
+            direction TB
+            OPT[Optimization Agent<br/>Performance analysis & improvements]
+            MON[Insights Visualizer Agent<br/>Production monitoring dashboards]
+            H7[Human: Strategic Alignment<br/>Continuous oversight & feedback]
+        end
+        
+        %% External Handoff
+        EXT[External DevOps/Infrastructure Team<br/>Deployment & production management]
+        
+        %% Phase 1 Internal Flow (Iterative)
+        H0 -->|Project requirements<br/>Business context<br/>Initial constraints| REQ
+        REQ -->|Initial requirements draft<br/>Technical interpretation<br/>Clarification needs| H0_REQ
+        H0_REQ -->|Refine requirements| REQ
+        H0_REQ -->|Requirements ready<br/>Begin solution exploration| BRAIN
+        BRAIN -->|Solution approaches<br/>Technology options<br/>Feasibility analysis| H0_BRAIN
+        H0_BRAIN -->|Need requirement changes| REQ
+        H0_BRAIN -->|Refine solutions| BRAIN
+        
+        %% Data Science Integration (Phase 1-2)
+        BRAIN -.->|ML requirements<br/>Data context| DATA
+        DATA -->|EDA insights<br/>Feature engineering<br/>Data quality assessment| MODEL
+        
+        %% Phase 2 Internal Flow
+        SYS -->|Clean Architecture blueprint<br/>API contracts<br/>Integration design| H3
+        MODEL -->|ML pipeline architecture<br/>Model selection<br/>Training strategy| H3
+        H3 -->|Validated architecture<br/>Technical decisions| PLAN
+        PLAN -->|Development tasks<br/>Resource allocation<br/>Sprint timeline| H4
+        
+        %% Phase 3 TDD Flow
+        TDD -->|TDD workflow setup<br/>Red-Green-Refactor coordination| CODE
+        TDD -->|Test architecture<br/>Given-When-Then structure| QA
+        CODE -->|TDD-first implementations<br/>Clean Architecture scaffolds| QA
+        QA -->|FastAPI test results<br/>Mock validation<br/>Quality metrics| H5
+        CODE -->|Model integration<br/>Production APIs| VIZ
+        VIZ -->|Monitoring dashboards<br/>Visualization interfaces| H5
+        H5 -->|Quality approved code<br/>TDD compliance<br/>Documentation| H6
+        
+        %% Phase 4 Internal Flow
+        OPT -->|Performance analysis<br/>Improvement recommendations<br/>Technical debt assessment| H7
+        MON -->|Production metrics<br/>Model performance<br/>System health| H7
+        
+        %% Cross-Phase Connections
+        H0_BRAIN -->|Solutions validated<br/>Ready for selection| H1
+        H1 -->|Selected approach<br/>Technical direction<br/>Scope definition| SYS
+        H4 -->|Approved plan<br/>Team assignments<br/>TDD requirements| TDD
+        H6 -->|Production-ready code<br/>Deployment specs<br/>Technical documentation| EXT
+        EXT -->|Production system<br/>Performance data<br/>User feedback| OPT
+        
+        %% Feedback Loops
+        H7 -->|Strategic adjustments<br/>Process improvements| H0
+        OPT -->|Technical insights<br/>Architecture learnings| SYS
+        OPT -->|TDD process optimizations<br/>Testing improvements| TDD
+        
+        %% Context Sharing (Parallel Processing)
+        BRAIN -.->|Solution context| SYS
+        SYS -.->|Architecture context| CODE
+        PLAN -.->|Implementation context| QA
+        DATA -.->|Data insights| VIZ
+        MODEL -.->|ML context| CODE
+    end
+    
+    %% Styling
+    classDef agent fill:#4682b4,stroke:#fff,stroke-width:2px,color:#fff
+    classDef tddAgent fill:#32cd32,stroke:#fff,stroke-width:3px,color:#fff
+    classDef human fill:#ffd700,stroke:#000,stroke-width:3px,color:#000
+    classDef iterative fill:#32cd32,stroke:#000,stroke-width:3px,color:#000
+    classDef external fill:#9370db,stroke:#fff,stroke-width:2px,color:#fff
+    classDef dsAgent fill:#ff6347,stroke:#fff,stroke-width:2px,color:#fff
+    
+    class BRAIN,REQ,SYS,PLAN,CODE,OPT,VIZ agent
+    class TDD,QA tddAgent
+    class DATA,MODEL dsAgent
+    class H0,H1,H3,H4,H5,H6,H7 human
+    class H0_REQ,H0_BRAIN iterative
+    class EXT external
+    class MON agent
+    
+    %% Phase Styling
+    classDef phaseBox fill:#f9f9f9,stroke:#333,stroke-width:2px
+    class P1,P2,P3,P4 phaseBox
