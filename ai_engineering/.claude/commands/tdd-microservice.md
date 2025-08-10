@@ -1,6 +1,38 @@
 # TDD-First FastAPI Microservice Development
 
-Orchestrates TDD-focused FastAPI microservice development using Clean Architecture principles with comprehensive testing strategy and domain-informed TDD cycles.
+## 🛑 MANDATORY AGENT VALIDATION PROTOCOL
+
+### Before EVERY Agent Execution:
+```
+🤖 AGENT REQUEST
+================
+Agent: [agent-type]
+Task: [description]
+Purpose: [what we're achieving]
+
+➡️ Approve this agent? (yes/no)
+```
+
+**I MUST**:
+1. STOP and present the above request
+2. WAIT for explicit approval (yes/proceed/go ahead)
+3. ABORT if user says no or provides different instructions
+
+### After EVERY Agent Completion:
+
+**I MUST**:
+1. DISPLAY the FULL agent output (no summarization)
+2. WAIT for user to review all options/recommendations
+3. ASK: "➡️ How would you like to proceed?"
+4. ONLY continue after user provides direction
+
+**CRITICAL**: 
+- NEVER summarize agent outputs
+- ALWAYS show complete results including all options
+- Let USER choose from agent-provided options
+- ONE AGENT AT A TIME - no parallel execution
+
+---
 
 ## Workflow Overview
 

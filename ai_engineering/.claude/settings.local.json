@@ -2,43 +2,24 @@
   "permissions": {
     "allow": [
       "Bash(mkdir:*)",
-      "Bash(tree: *)"
+      "Bash(tree: *)",
+      "WebFetch(domain:docs.anthropic.com)"
     ],
     "deny": []
   },
   "hooks": {
-    "PreToolUse": {
-      "command": "./claude_checkpoint.sh",
-      "description": "Human checkpoint validation for all tool usage"
-    },
-    "PostTask": {
-      "command": "bash .claude/agent_validation_hook.sh agent_complete \"${TASK_AGENT}\" \"${TASK_DESCRIPTION}\"",
-      "blocking": true,
-      "description": "Requests human validation after each agent task completion"
-    }
   },
-  "agent_validation": {
-    "enabled": true,
-    "require_approval": true,
-    "approval_timeout": 300,
-    "default_action": "stop",
-    "validation_levels": {
-      "critical": ["model-engineer", "code-architect", "tdd-coordinator"],
-      "standard": ["brainstormer", "requirements-architect", "system-designer", "implementation-planner"],
-      "review": ["qa-agent", "data-scientist", "insights-visualizer", "optimization-agent"]
-    },
-    "checkpoint_mapping": {
-      "brainstormer": "H0_BRAIN",
-      "requirements-architect": "H0_REQ",
-      "data-scientist": "H2_DATA",
-      "system-designer": "H3",
-      "model-engineer": "H2_MODEL",
-      "implementation-planner": "H2_PLAN",
-      "tdd-coordinator": "H4",
-      "code-architect": "H5",
-      "qa-agent": "H5",
-      "insights-visualizer": "H5",
-      "optimization-agent": "H7"
-    }
+  "agentColors": {
+    "brainstormer": "\u001b[36m",
+    "requirements-architect": "\u001b[33m",
+    "system-designer": "\u001b[34m",
+    "implementation-planner": "\u001b[35m",
+    "tdd-coordinator": "\u001b[32m",
+    "code-architect": "\u001b[31m",
+    "qa-agent": "\u001b[32m",
+    "optimization-agent": "\u001b[37m",
+    "data-scientist": "\u001b[36m",
+    "model-engineer": "\u001b[33m",
+    "insights-visualizer": "\u001b[35m"
   }
 }
